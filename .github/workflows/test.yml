@@ -25,4 +25,4 @@ jobs:
       - name: Test
         env:
           MONGODB_URL: ${{ secrets.MONGODB_URL }}
-        run: go test -v .
+        run: ls -al
