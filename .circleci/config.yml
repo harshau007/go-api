@@ -11,6 +11,8 @@ jobs:
           command: go get ./...
       - run: 
           name: Running Test
+          environment:
+            MONGODB_URL: MONGODB_URL
           command: go test -v
       - store_test_results:
           path: results.json
