@@ -4,14 +4,20 @@ jobs:
   test:
     docker:
       - image: cimg/go:1.21.1
-    environment:
-      MONGODB_URL: $MONGODB_URL
     steps:
       - checkout
-      - run: go mod tidy
-      - run: go run .
-      - run: go test
+      - run: go mod download
+      - run: 
+          name: Downloading dependency
+          environment:
+            MONGODB_URL: MONGODB_URL
+          command: go run .
+      - run: 
+          name: Running Test
+          command: go test
+      - store_test_results:
+          path: results.json
 workflows:
-  testing_code:
+  testing-code:
     jobs:
       - test
