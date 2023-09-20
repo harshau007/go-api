@@ -26,6 +26,4 @@ jobs:
         run: go get -v ./...
 
       - name: Test
-        run: | 
-          ls -al
-          cat ${{ secrets.MONGODB_URL }}
+        run: go test -v .
