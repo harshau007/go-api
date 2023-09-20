@@ -6,9 +6,9 @@
   go run main.go
 ```
 
-### To Run Test
+### To Run Test 
 
-```
+```bash
   go test
 ```
 
