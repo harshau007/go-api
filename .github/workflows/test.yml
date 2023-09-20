@@ -23,4 +23,6 @@ jobs:
         run: go get -v ./...
 
       - name: Test
+        env:
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
         run: go test -v
