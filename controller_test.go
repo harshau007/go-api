@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -10,19 +9,8 @@ import (
 
 	"github.com/harshau007/go-api/controller"
 	"github.com/harshau007/go-api/models"
-	"github.com/joho/godotenv"
-	"os"
 )
 
-func TestMain(m *testing.M) {
-	err := godotenv.Load(".env")
-	if err != nil {
-	  log.Fatal("Error loading .env file")
-	}
-  
-	// Run tests
-	os.Exit(m.Run()) 
-}
 
 var respUser models.User
 
