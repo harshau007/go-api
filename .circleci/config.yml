@@ -10,10 +10,6 @@ jobs:
           name: Installing dependency
           command: go get ./...
       - run: 
-          environment:
-            MONGODB_URL: MONGODB_URL
-          command: go run main.go
-      - run: 
           name: Running Test
           command: go test -v
       - store_test_results:
