@@ -6,15 +6,16 @@ jobs:
       - image: cimg/go:1.21.1
     steps:
       - checkout
-      - run: go mod download
       - run: 
-          name: Downloading dependency
+          name: Installing dependency
+          command: go get ./...
+      - run: 
           environment:
             MONGODB_URL: MONGODB_URL
           command: go run .
       - run: 
           name: Running Test
-          command: go test
+          command: go test -v
       - store_test_results:
           path: results.json
 workflows:
