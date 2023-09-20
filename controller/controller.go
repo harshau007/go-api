@@ -145,7 +145,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllUser(w http.ResponseWriter,r *http.Request) {
-	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	w.Header().Set("Content-Type", "application/json")
 	allUsers := getAllUsers()
 	json.NewEncoder(w).Encode(allUsers)
 }
