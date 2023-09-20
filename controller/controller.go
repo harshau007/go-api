@@ -24,7 +24,7 @@ const colName = "Users"
 var collection *mongo.Collection
 
 func init() {
-	err := godotenv.Load(".env")
+	err := godotenv.Load()
 
 	if err!=nil{
 		log.Fatal("Error occured while loading env")
