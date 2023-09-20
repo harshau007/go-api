@@ -4,6 +4,8 @@ jobs:
   test:
     docker:
       - image: cimg/go:1.21.1
+    environment:
+      MONGODB_URL: $MONGODB_URL
     steps:
       - checkout
       - run: go mod tidy
