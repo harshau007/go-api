@@ -1,21 +1,14 @@
 version: 2.1
-orbs:
-  go: circleci/go@1.8.0
 
 jobs:
   test:
-    executor:
-      name: go/default
+    docker:
+      - image: cimg/go:1.21.1
     steps:
       - checkout
-      - go/load-cache
-      - go/mod-download 
-      - go/save-cache 
-      - go/test:
-          covermode: atomic
-          failfast: true
-          race: true
+      - run: go mod tidy
+      - run: go test
 workflows:
-  testing:
+  testing_code:
     jobs:
       - test
