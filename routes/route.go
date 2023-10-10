@@ -6,6 +6,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/harshau007/go-api/controller"
+	"github.com/harshau007/go-api/jwt"
 )
 
 func Welcome(w http.ResponseWriter, r *http.Request) {
@@ -15,11 +16,12 @@ func Welcome(w http.ResponseWriter, r *http.Request) {
 func Router() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
-	router.MethodFunc("GET", "/users", controller.GetAllUser)
-	router.MethodFunc("POST", "/user", controller.CreateUser)
-	router.MethodFunc("PUT", "/user/{id}", controller.UpdateUser)
-	router.MethodFunc("DELETE","/deleteuser/{id}", controller.DeleteUser)
-	router.MethodFunc("DELETE","/deletealluser", controller.DeleteAllUser)
+	router.MethodFunc("GET", "/jwt", jwt.GetJWT)
+	router.Method("GET", "/users", jwt.ValidateJWT(controller.GetAllUser))
+	router.Method("POST", "/user", jwt.ValidateJWT(controller.CreateUser))
+	router.Method("PUT", "/user/{id}", jwt.ValidateJWT(controller.UpdateUser))
+	router.Method("DELETE","/deleteuser/{id}", jwt.ValidateJWT(controller.DeleteUser))
+	router.Method("DELETE","/deletealluser", jwt.ValidateJWT(controller.DeleteAllUser))
 
 	return router
 }
